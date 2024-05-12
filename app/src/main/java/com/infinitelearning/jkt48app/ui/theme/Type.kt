@@ -1,4 +1,4 @@
-package com.infinitelearning.infiniteapp.ui.theme
+package com.infinitelearning.jkt48app.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

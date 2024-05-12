@@ -1,4 +1,4 @@
-package com.infinitelearning.infiniteapp.presentation.component
+package com.infinitelearning.jkt48app.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -20,9 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.infinitelearning.infiniteapp.R
-import com.infinitelearning.infiniteapp.model.Member
-import com.infinitelearning.infiniteapp.ui.theme.AppTheme
+import com.infinitelearning.jkt48app.R
+import com.infinitelearning.jkt48app.model.Member
+import com.infinitelearning.jkt48app.ui.theme.AppTheme
 
 @Composable
 fun MemberItem(

@@ -1,4 +1,4 @@
-package com.infinitelearning.infiniteapp.model
+package com.infinitelearning.jkt48app.model
 
 data class News(
     val id: Int,

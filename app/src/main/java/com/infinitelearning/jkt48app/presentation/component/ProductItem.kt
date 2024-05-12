@@ -1,6 +1,7 @@
-package com.infinitelearning.infiniteapp.presentation.component
+package com.infinitelearning.jkt48app.presentation.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,24 +10,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.infinitelearning.infiniteapp.R
-import com.infinitelearning.infiniteapp.model.Course
-import com.infinitelearning.infiniteapp.model.Product
-import com.infinitelearning.infiniteapp.ui.theme.AppTheme
+import com.infinitelearning.jkt48app.model.Product
 
 @Composable
 fun ProductItem(
     product: Product,
     modifier: Modifier = Modifier,
+    onItemClicked: (Int) -> Unit
 ) {
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth().clickable {
+            onItemClicked(product.id)
+        }
     ) {
         Image(
             painter = painterResource(id = product.photo),
@@ -37,8 +35,7 @@ fun ProductItem(
         Text(
             text = product.nama,
             textAlign = TextAlign.Center,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
+            style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.fillMaxWidth()
         )
     }

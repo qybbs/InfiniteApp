@@ -1,4 +1,4 @@
-package com.infinitelearning.infiniteapp
+package com.infinitelearning.jkt48app
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

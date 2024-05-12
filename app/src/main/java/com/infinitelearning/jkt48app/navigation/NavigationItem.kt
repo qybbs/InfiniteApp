@@ -1,4 +1,4 @@
-package com.infinitelearning.infiniteapp.navigation
+package com.infinitelearning.jkt48app.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

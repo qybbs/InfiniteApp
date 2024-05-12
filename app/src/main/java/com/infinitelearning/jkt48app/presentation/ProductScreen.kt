@@ -1,4 +1,4 @@
-package com.infinitelearning.infiniteapp.presentation
+package com.infinitelearning.jkt48app.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -8,15 +8,16 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.infinitelearning.infiniteapp.data.DummyData
-import com.infinitelearning.infiniteapp.model.Product
-import com.infinitelearning.infiniteapp.presentation.component.ProductItem
-import com.infinitelearning.infiniteapp.ui.theme.AppTheme
+import androidx.navigation.NavController
+import com.infinitelearning.jkt48app.data.DummyData
+import com.infinitelearning.jkt48app.model.Product
+import com.infinitelearning.jkt48app.navigation.Screen
+import com.infinitelearning.jkt48app.presentation.component.ProductItem
 
 @Composable
-fun CourseScreen(
+fun ProductScreen(
+    navController: NavController,
     modifier: Modifier = Modifier,
     products: List<Product> = DummyData.jkt48product
 ) {
@@ -28,15 +29,9 @@ fun CourseScreen(
         modifier = modifier.fillMaxSize()
     ) {
         items(products, key = { it.id }) {
-            ProductItem(product = it)
+            ProductItem(product = it) { productId ->
+                navController.navigate(Screen.Detail.route + "product/$productId")
+            }
         }
-    }
-}
-
-@Preview(showSystemUi = true)
-@Composable
-private fun CourseScreenPreview() {
-    AppTheme {
-        CourseScreen(products = DummyData.jkt48product)
     }
 }

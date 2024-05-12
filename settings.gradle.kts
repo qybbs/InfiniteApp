@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "InfiniteApp"
+rootProject.name = "JKT48App"
 include(":app")
  

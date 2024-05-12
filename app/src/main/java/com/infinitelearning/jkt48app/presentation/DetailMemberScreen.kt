@@ -1,4 +1,4 @@
-package com.infinitelearning.infiniteapp.presentation
+package com.infinitelearning.jkt48app.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.infinitelearning.infiniteapp.data.DummyData
-import com.infinitelearning.infiniteapp.model.Member
+import com.infinitelearning.jkt48app.data.DummyData
+import com.infinitelearning.jkt48app.model.Member
 
 @Composable
 fun DetailMemberScreen(
@@ -38,12 +38,12 @@ fun DetailMemberScreen(
     Column(
         modifier = modifier
     ) {
-        DetailMentorContent(newMembersList = newMembersList)
+        DetailMemberContent(newMembersList = newMembersList)
     }
 }
 
 @Composable
-private fun DetailMentorContent(
+private fun DetailMemberContent(
     newMembersList: List<Member>,
     modifier: Modifier = Modifier
 ) {
@@ -84,5 +84,5 @@ private fun DetailMentorContent(
 @Preview(showBackground = true)
 @Composable
 private fun DetailMentorContentPreview() {
-    DetailMentorContent(newMembersList = DummyData.jkt48member)
+    DetailMemberContent(newMembersList = DummyData.jkt48member)
 }

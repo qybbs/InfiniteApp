@@ -1,4 +1,4 @@
-package com.infinitelearning.infiniteapp
+package com.infinitelearning.jkt48app
 
 import org.junit.Test
 

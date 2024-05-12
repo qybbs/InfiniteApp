@@ -1,6 +1,7 @@
-package com.infinitelearning.infiniteapp.presentation.component
+package com.infinitelearning.jkt48app.presentation.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,21 +18,22 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.infinitelearning.infiniteapp.R
-import com.infinitelearning.infiniteapp.model.News
-import com.infinitelearning.infiniteapp.ui.theme.AppTheme
+import com.infinitelearning.jkt48app.model.News
 
 @Composable
 fun NewsItem(
     news: News,
     modifier: Modifier = Modifier,
+    onItemClicked: (Int) -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
+            .clickable {
+                onItemClicked(news.id)
+            }
     ) {
         Image(
             painter = painterResource(id = news.photo),
@@ -53,21 +55,5 @@ fun NewsItem(
 //                Text(text = " - ${news.desc}")
 //            }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun MentorItemPreview() {
-    AppTheme {
-        NewsItem(
-            news = News(
-                1,
-                "Nama Mentee",
-                R.drawable.no_profile,
-                "Batch 7",
-                "Mentee Mobile"
-            )
-        )
     }
 }

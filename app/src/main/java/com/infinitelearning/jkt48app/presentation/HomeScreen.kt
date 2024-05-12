@@ -1,4 +1,4 @@
-package com.infinitelearning.infiniteapp.presentation
+package com.infinitelearning.jkt48app.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,12 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.infinitelearning.infiniteapp.data.DummyData
-import com.infinitelearning.infiniteapp.model.News
-import com.infinitelearning.infiniteapp.model.Member
-import com.infinitelearning.infiniteapp.navigation.Screen
-import com.infinitelearning.infiniteapp.presentation.component.NewsItem
-import com.infinitelearning.infiniteapp.presentation.component.MemberItem
+import com.infinitelearning.jkt48app.data.DummyData
+import com.infinitelearning.jkt48app.model.News
+import com.infinitelearning.jkt48app.model.Member
+import com.infinitelearning.jkt48app.navigation.Screen
+import com.infinitelearning.jkt48app.presentation.component.NewsItem
+import com.infinitelearning.jkt48app.presentation.component.MemberItem
 
 @Composable
 fun HomeScreen(
@@ -39,8 +39,8 @@ fun HomeScreen(
                 modifier = modifier
             ) {
                 items(mentors, key = { it.id }) {
-                    MemberItem(member = it) { mentorId ->
-                        navController.navigate(Screen.Detail.route + "/$mentorId")
+                    MemberItem(member = it) { memberId ->
+                        navController.navigate(Screen.Detail.route + "member/$memberId")
                     }
                 }
             }
@@ -49,7 +49,9 @@ fun HomeScreen(
             Text(text = "News", modifier = Modifier.padding(horizontal = 16.dp))
         }
         items(mentees, key = { it.id }) {
-            NewsItem(news = it, modifier = Modifier.padding(horizontal = 16.dp))
+            NewsItem(news = it, modifier = Modifier.padding(horizontal = 16.dp)) { newsId ->
+                navController.navigate(Screen.Detail.route + "news/$newsId")
+            }
         }
     }
 }
