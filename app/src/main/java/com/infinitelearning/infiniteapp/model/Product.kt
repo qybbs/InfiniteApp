@@ -1,7 +1,9 @@
 package com.infinitelearning.infiniteapp.model
 
-data class Gallery(
+data class Product(
     val id: Int,
-    val name: String,
+    val nama: String,
     val photo: Int,
+    val url: String,
+    val desc: String
 )

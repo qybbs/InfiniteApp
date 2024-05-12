@@ -2,9 +2,12 @@ package com.infinitelearning.infiniteapp.presentation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.BrowseGallery
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Topic
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -40,21 +43,55 @@ fun InfiniteApp(
     navController: NavHostController = rememberNavController()
 ) {
     val context = LocalContext.current
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    val title = when(currentRoute) {
+        "home" -> "Home"
+        "gallery" -> "Product"
+        "course" -> "Product"
+        else -> "Detail Info"
+    }
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = "Infinite App") },
-                actions = {
-                    IconButton(onClick = { shareItem(context) }) {
-                        Icon(
-                            imageVector = Icons.Default.Share, contentDescription = stringResource(
-                                id = R.string.menu_share
+            if (title == "Detail Info") {
+                TopAppBar(
+                    title = { Text(title) },
+                    navigationIcon = {
+                        IconButton(onClick = {
+                            navController.navigateUp()
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.ArrowBack,
+                                contentDescription = "Back",
                             )
-                        )
+                        }
+                    },
+                    actions = {
+                        IconButton(onClick = { shareItem(context) }) {
+                            Icon(
+                                imageVector = Icons.Default.Share, contentDescription = stringResource(
+                                    id = R.string.menu_share
+                                )
+                            )
+                        }
                     }
-                }
-            )
+                )
+            } else {
+                TopAppBar(
+                    title = { Text(title) },
+                    actions = {
+                        IconButton(onClick = { shareItem(context) }) {
+                            Icon(
+                                imageVector = Icons.Default.Share, contentDescription = stringResource(
+                                    id = R.string.menu_share
+                                )
+                            )
+                        }
+                    }
+                )
+            }
         },
         bottomBar = {
             BottomBar(navController)
@@ -71,20 +108,20 @@ fun InfiniteApp(
             }
 
             composable(Screen.Gallery.route) {
-                GalleryScreen()
+                CourseScreen()
             }
 
             composable(Screen.Course.route) {
-                CourseScreen()
+                ProductScreen()
             }
 
             composable(
                 Screen.Detail.route + "/{mentorId}",
                 arguments = listOf(navArgument("mentorId") { type = NavType.IntType })
             ) { navBackStackEntry ->
-                DetailMentorScreen(
+                DetailMemberScreen(
                     navController = navController,
-                    mentorsId = navBackStackEntry.arguments?.getInt("mentorId")
+                    membersId = navBackStackEntry.arguments?.getInt("mentorId")
                 )
             }
         }
@@ -110,12 +147,12 @@ private fun BottomBar(
             ),
             NavigationItem(
                 title = stringResource(id = R.string.menu_gallery),
-                icon = Icons.Default.BrowseGallery,
+                icon = Icons.Default.ShoppingCart,
                 screen = Screen.Gallery
             ),
             NavigationItem(
                 title = stringResource(id = R.string.menu_course),
-                icon = Icons.Default.Topic,
+                icon = Icons.Default.AccountCircle,
                 screen = Screen.Course
             )
         )

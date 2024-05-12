@@ -24,27 +24,27 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.infinitelearning.infiniteapp.data.DummyData
-import com.infinitelearning.infiniteapp.model.Mentor
+import com.infinitelearning.infiniteapp.model.Member
 
 @Composable
-fun DetailMentorScreen(
+fun DetailMemberScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    mentorsId: Int?
+    membersId: Int?
 ) {
-    val newMentorsList = DummyData.mobileMentors.filter { mentor ->
-        mentor.id == mentorsId
+    val newMembersList = DummyData.jkt48member.filter { member ->
+        member.id == membersId
     }
     Column(
         modifier = modifier
     ) {
-        DetailMentorContent(newMentorsList = newMentorsList)
+        DetailMentorContent(newMembersList = newMembersList)
     }
 }
 
 @Composable
 private fun DetailMentorContent(
-    newMentorsList: List<Mentor>,
+    newMembersList: List<Member>,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -54,27 +54,27 @@ private fun DetailMentorContent(
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(data = newMentorsList[0].photo)
+                .data(data = newMembersList[0].photo)
                 .build(),
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(height = 250.dp, width = 170.dp)
                 .clip(RoundedCornerShape(16.dp)),
-            contentDescription = "Poster Movie"
+            contentDescription = "Member Photo"
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.padding(4.dp)) {
             Text(
-                text = newMentorsList[0].name,
+                text = newMembersList[0].nama,
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "(${newMentorsList[0].nickname})",
+                text = "(${newMembersList[0].panggilan})",
                 style = MaterialTheme.typography.titleSmall,
             )
             Text(
-                text = "Role : ${newMentorsList[0].role}",
+                text = "Role : ${newMembersList[0].gen}",
                 style = MaterialTheme.typography.titleSmall,
             )
         }
@@ -84,5 +84,5 @@ private fun DetailMentorContent(
 @Preview(showBackground = true)
 @Composable
 private fun DetailMentorContentPreview() {
-    DetailMentorContent(newMentorsList = DummyData.mobileMentors)
+    DetailMentorContent(newMembersList = DummyData.jkt48member)
 }

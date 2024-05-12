@@ -17,55 +17,29 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.infinitelearning.infiniteapp.R
 import com.infinitelearning.infiniteapp.model.Course
-import com.infinitelearning.infiniteapp.ui.theme.InfiniteAppTheme
+import com.infinitelearning.infiniteapp.model.Product
+import com.infinitelearning.infiniteapp.ui.theme.AppTheme
 
 @Composable
-fun CourseItem(
-    course: Course,
+fun ProductItem(
+    product: Product,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
         Image(
-            painter = painterResource(id = course.photo),
-            contentDescription = course.name,
+            painter = painterResource(id = product.photo),
+            contentDescription = product.nama,
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = course.name,
+            text = product.nama,
             textAlign = TextAlign.Center,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = course.level,
-            textAlign = TextAlign.Center,
-            color = when (course.level) {
-                "Beginner" -> Color.Red
-                "Fundamental" -> Color.Yellow
-                "Intermediate" -> Color.Green
-                else -> MaterialTheme.colorScheme.primary
-            },
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun CourseItemPreview() {
-    InfiniteAppTheme {
-        CourseItem(
-            course = Course(
-                1,
-                "Jetpack Compose Introduction",
-                "Beginner",
-                R.drawable.compose_introduction
-            )
         )
     }
 }
