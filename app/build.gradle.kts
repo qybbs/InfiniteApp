@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.infinitelearning.infiniteapp"
+    namespace = "com.qybbs.jkt48app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.infinitelearning.infiniteapp"
+        applicationId = "com.qybbs.jkt48app"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
